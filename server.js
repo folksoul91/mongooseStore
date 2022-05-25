@@ -62,14 +62,33 @@ app.get("/store/:id", (req, res) => {
   });
 });
 
-// Update
-app.patch("/store/:id", (req, res) => {
-  Product.findById(req.params.id, (err, updateProduct) => {
-    updateProduct.qty = updateProduct.qty - 1;
-    updateProduct.save();
+// Buy
+app.put("/store/:id", (req, res) => {
+  Product.findById(req.params.id, (error, product) => {
+    let originalQty = product.qty;
+    Product.findByIdAndUpdate(
+      req.params.id,
+      { qty: originalQty - req.body.qty },
+      { new: true },
+      (error, product) => {
+        res.redirect(`/store/${req.params.id}`);
+      }
+    );
   });
-  res.redirect(`/store/${req.params.id}`);
 });
+
+// Update
+app.put("/store/:id", (req, res) => {
+  Product.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (err, updateProduct) => {
+      res.redirect(`/store/${req.params.id}`);
+    }
+  );
+});
+
 //edit
 app.get("/store/:id/edit", (req, res) => {
   Product.findById(req.params.id, (err, product) => {
@@ -78,6 +97,7 @@ app.get("/store/:id/edit", (req, res) => {
     });
   });
 });
+
 // Delete
 app.delete("/store/:id", (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
