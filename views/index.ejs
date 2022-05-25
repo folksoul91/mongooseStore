@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="index-container">
+      <header>
+        <h1>Mongoose Store</h1>
+        <ul>
+          <a href="/store/new">Create New Products</a>
+        </ul>
+      </header>
+      <main>
+        <ul>
+          <%allProducts.forEach(product => {%>
+          <li>
+            <a href="/store/<%=product._id %>"
+              ><img
+                class="index-img"
+                src="<%=product.img%>"
+                alt="<%=product.name%>"
+            /></a>
+          </li>
+          <li><%=product.name%></li>
+          <%});%>
+        </ul>
+      </main>
+      <footer>
+        <span>℗ 2022</span>
+        <span>Mongoose Store.</span>
+      </footer>
+    </div>
+  </body>
+</html>

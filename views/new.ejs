@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <h1>New Product</h1>
+    <div>
+      <form action="/store" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" /><br />
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" /><br />
+        <label for="img">Image</label>
+        <input
+          type="text"
+          name="img"
+          id="new-img"
+          value="https://cdn.writermag.com/2019/03/question-marks.jpg"
+        /><br />
+        <label for="price">Price</label>
+        <input type="number" name="price" id="new-price" /><br />
+        <label for="qty">Quantity</label>
+        <input type="number" name="qty" id="new-qty" /><br />
+        <input type="submit" value="Create New Product" />
+      </form>
+    </div>
+    <nav><a href="/store">Back</a></nav>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="edit-container">
+      <header>
+        <h1>Edit Product</h1>
+        <nav><a href="/store/<%=productObj._id%>">Go Back</a></nav>
+      </header>
+      <main>
+        <form action="/store/<%=productObj._id%>?_method=PUT" method="POST">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="edit-name"
+            value="<%=productObj.name%>"
+          />
+          <br />
+          <label for="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            id="edit-description"
+            value="<%=productObj.description%>"
+          />
+          <br />
+          <label for="img">Image</label>
+          <input type="text" name="img" id="img" value="<%=productObj.img%>" />
+          <br />
+          <label for="price">Price</label>
+          <input
+            type="number"
+            name="price"
+            id="edit-price"
+            value="<%=productObj.price%>"
+          />
+          <br />
+          <label for="qty">Quantity</label>
+          <input
+            type="number"
+            name="qty"
+            id="edit-qty"
+            value="<%=productObj.qty%>"
+          />
+          <br />
+          <input type="submit" value="Edit Product" />
+        </form>
+      </main>
+      <footer></footer>
+    </div>
+  </body>
+</html>
